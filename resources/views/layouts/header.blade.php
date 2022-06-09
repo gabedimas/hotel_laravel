@@ -71,7 +71,7 @@
                                 </ul>
                                 @else
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="b{{ url('/logout') }}">Logout</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ url('/logout') }}">Logout</a></li>
                                 </ul>
                                 @endif
                             </li>
