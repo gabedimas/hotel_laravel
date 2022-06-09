@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +18,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('beranda.main');
 });
+
+
+// MENU ROUTING
+// Route::get('/about-us', 'get_register_menu');
 
 
 // MANAGEMENT ROUTING
@@ -28,10 +34,10 @@ Route::post('/management/approve', [ManagementController::class, 'approve_bookin
 
 // AUTHENTICATION ROUTING
 Route::get('/register', [AuthController::class, 'get_register_menu']);
-Route::get('/login', [LoginController::class, 'get_login_menu']);
-Route::get('/logout', [LoginController::class, 'logout']);
-Route::post('/auth/register', [LoginController::class, 'register']);
-Route::post('/auth/login', [LoginController::class, 'login']);
+Route::get('/login', [AuthController::class, 'get_login_menu']);
+Route::get('/logout', [AuthController::class, 'logout']);
+Route::post('/auth/register', [AuthController::class, 'register']);
+Route::post('/auth/login', [AuthController::class, 'login']);
 
 
 // ADMIN ROUTING
