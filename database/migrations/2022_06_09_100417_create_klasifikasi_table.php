@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('klasifikasi', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('jumlah_kapasitas');
+            $table->integer('harga');
             $table->timestamps();
         });
     }
