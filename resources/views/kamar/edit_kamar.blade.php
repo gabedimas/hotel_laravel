@@ -6,25 +6,25 @@
                 <div class="row">
                     <div class="col-lg-8 posts-list">
                         <div class="comment-form">
-                            <a href="{{ url('/admin/klasifikasi/list') }}" class="primary-btn button_hover">< Back</a>
-                            <h4>Add Room Classification</h4>
-                            <form action="/admin/klasifikasi/submit" method="POST" enctype="multipart/form-data">
+                            <a href="{{ url('/admin/kamar/list') }}" class="primary-btn button_hover">< Back</a>
+                            <h4>Edit Room</h4>
+                            <form action="/admin/kamar/edit" method="POST" enctype="multipart/form-data">
                                 @csrf
+
+                                @foreach($detail_kamar as $kamar)
                                 <div class="form-group form-inline">
+                                    <input type="hidden" class="form-control" id="kamar_id" name="kamar_id" value="{{ $kamar['id'] }}">
                                   <div class="form-group col-lg-6 col-md-6 name">
                                       Name :
-                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Suite Room">
+                                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $kamar['nama'] }}">
                                   </div>
                                   <div class="form-group col-lg-6 col-md-6 name">
-                                      Room Capacity :
-                                    <input type="number" class="form-control" id="jumlah_kapasitas" name="jumlah_kapasitas" placeholder="49">
+                                      Room Classification :
+                                    <input type="text" class="form-control" id="klasifikasi_id" name="klasifikasi_id" value="{{ $kamar['klasifikasi_id'] }}">
                                   </div>
                                 </div>
-                                <div class="form-group" style="text-align: left">
-                                    Price :
-                                    <input type="number" class="form-control" id="harga" name="harga" placeholder="27500000">
-                                </div>
                                 <input type="submit" class="btn btn-primary" value="Submit">
+                                @endforeach
                             </form>
                         </div>
                     </div>

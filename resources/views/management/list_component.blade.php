@@ -10,7 +10,7 @@
             <a href="{{ url('/management/detail/'. $approval['id']) }}" class="btn theme_btn button_hover">Approve</a>
         </div>
         <a href="#"><h4 class="sec_h4">{{ $approval['nama_kamar'] }}</h4></a>
-        <h5>$250<small>/night</small></h5>
+        <h5>{{ $approval['nama_klasifikasi'] }}</h5>
     </div>
 </div>
 @endforeach

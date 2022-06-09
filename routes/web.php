@@ -57,7 +57,7 @@ Route::post('/admin/kamar/edit', [AdminController::class, 'edit_kamar']);
 Route::get('/admin/kamar/delete/{kamar_id}', [AdminController::class, 'delete_kamar']);
 
 
-Route::get('/admin/user_management/list', [AdminController::class, 'get_list_kamar']);
+Route::get('/admin/user_management/list', [AdminController::class, 'get_list_user']);
 Route::get('/admin/user_management/detail/{user_id}', [AdminController::class, 'get_detail_user']);
 Route::get('/admin/user_management/add', [AdminController::class, 'get_add_user_menu']);
 Route::post('/admin/user_management/submit', [AdminController::class, 'add_user']);

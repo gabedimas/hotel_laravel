@@ -8,36 +8,42 @@
                         <div class="comment-form">
                             <a href="{{ url('/management/list') }}" class="primary-btn button_hover">< Back</a>
                             <h4>Booking Approval</h4>
-                            <form>
+                            <form action="/management/approve" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @foreach($detail_approval as $approval)
                                 <div class="form-group form-inline">
                                   <div class="form-group col-lg-6 col-md-6 name">
-                                    <input type="hidden" class="form-control" id="user_id" value="1">
-                                    <input type="hidden" class="form-control" id="kamar_id" value="1">
-                                    <input type="text" class="form-control" id="nama" value="Gabe Dimas" readonly>
+                                    <input type="hidden" class="form-control" id="booking_id" name="booking_id" value="{{ $approval->id }}">
+                                    <input type="hidden" class="form-control" id="user_id" value="{{ $approval->user_id }}">
+                                    <input type="hidden" class="form-control" id="kamar_id" value="{{ $approval->kamar_id }}">
+                                    <input type="text" class="form-control" id="nama" value="{{ $approval->nama_user }}" readonly>
                                   </div>
                                   <div class="form-group col-lg-6 col-md-6 email">
-                                    <input type="email" class="form-control" id="email" value="Gabe Dimas" readonly>
+                                    <input type="email" class="form-control" id="email" value="{{ $approval->email }}" readonly>
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="nama_klasifikasi" value="Gabe Dimas" readonly>
+                                    <input type="text" class="form-control" id="nama_klasifikasi" value="{{ $approval->nama_klasifikasi }}" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="nama_kamar" value="nama_kamar" readonly>
+                                    <input type="text" class="form-control" id="nama_kamar" value="{{ $approval->nama_kamar }}" readonly>
                                 </div>
                                 <div class="form-group form-inline">
                                     <div class="form-group col-lg-6 col-md-6 name">
-                                      <input type="text" class="form-control" id="tanggal_awal" value="tanggal_awal" readonly>
+                                      <input type="text" class="form-control" id="tanggal_awal" value="{{ $approval->tanggal_awal }}" readonly>
                                     </div>
                                     <div class="form-group col-lg-6 col-md-6 email">
-                                      <input type="text" class="form-control" id="tanggal_akhir" value="tanggal_akhir" readonly>
+                                      <input type="text" class="form-control" id="tanggal_akhir" value="{{ $approval->tanggal_akhir }}" readonly>
                                     </div>
                                   </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="harga" value="Gabe Dimas" readonly>
+                                  <div class="form-group" style="text-align: left">
+                                    <label for="comment-name">What should we do? </label><br>
+                                  <input type="radio" id="status" name="status" value="APPROVED"> Approve</label><br>
+                                  <label class="radio-inline">
+                                  <input type="radio" id="status" name="status" value="REJECTED"> Reject</label><br>
                                 </div>
-                                <a href="#" class="primary-btn button_hover">Reject</a>
-                                <a href="#" class="primary-btn button_hover">Approved</a>
+                                <input type="submit" class="btn btn-primary" value="Submit">
+                                @endforeach
                             </form>
                         </div>
                     </div>
