@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email');
             $table->string('password');
-            $table->enum('role');
+            $table->enum('role', ['user', 'manager', 'admin'])->default('user');
             $table->timestamps();
         });
     }
