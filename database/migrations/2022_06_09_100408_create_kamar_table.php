@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('kamar', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('klasifikasi_id');
             $table->timestamps();
         });
     }
