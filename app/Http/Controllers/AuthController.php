@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -22,13 +26,13 @@ class AuthController extends Controller
         ]);
 
         $user = new User;
-        $user->name = $request->name;
+        $user->nama = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->role = 'user';
         $user->save();
 
-        return redirect("/sign_in");
+        return redirect("/login");
     }
 
     public function login(Request $request) {
@@ -41,7 +45,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             // return(view('beranda.app'));
-            return redirect('/beranda');
+            return redirect('/');
 
             // THIS IS JUST A TEST FOR AUTHENTICATION
             // return(view('layouts.test', ['title' => Auth::user()->name, 'isi_artikel' => 'Hello, my name is ' . Auth::user()->name]));

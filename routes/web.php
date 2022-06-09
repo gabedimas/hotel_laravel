@@ -27,9 +27,9 @@ Route::get('/', function () {
 
 
 // MANAGEMENT ROUTING
-Route::get('/management/list', [ManagementController::class, 'get_list_approval'])->middleware('can:isManager');
-Route::get('/management/detail/{booking_id}', [ManagementController::class, 'get_detail_approval'])->middleware('can:isManager');
-Route::post('/management/approve', [ManagementController::class, 'approve_booking'])->middleware('can:isManager');
+Route::get('/management/list', [ManagementController::class, 'get_list_approval']);
+Route::get('/management/detail/{booking_id}', [ManagementController::class, 'get_detail_approval']);
+Route::post('/management/approve', [ManagementController::class, 'approve_booking']);
 
 
 // AUTHENTICATION ROUTING

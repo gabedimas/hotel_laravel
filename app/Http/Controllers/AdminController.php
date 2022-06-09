@@ -23,54 +23,54 @@ class AdminController extends Controller
     }
 
     public function add_klasifikasi(Request $request) {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'jumlah_kapasitas' => 'required|string|min:1',
-            'harga' => 'required|string|min:1'
-        ]);
+        // $request->validate([
+        //     'nama' => 'required|string|max:255',
+        //     'jumlah_kapasitas' => 'required|string|min:1',
+        //     'harga' => 'required|string|min:1'
+        // ]);
 
         $klasifikasi = new Klasifikasi;
         $klasifikasi->nama = $request->nama;
         $klasifikasi->jumlah_kapasitas = $request->jumlah_kapasitas;
         $klasifikasi->harga = $request->harga;
 
-        $file = $request->file('gambar');
-        if(file_exists($file)) {
-            $filename = $file->getClientOriginalName();
-            $klasifikasi->gambar_klasifikasi = $filename;
-            $file->move(public_path('uploads\klasifikasi_image'), $filename);
-        }
+        // $file = $request->file('gambar');
+        // if(file_exists($file)) {
+        //     $filename = $file->getClientOriginalName();
+        //     $klasifikasi->gambar_klasifikasi = $filename;
+        //     $file->move(public_path('uploads\klasifikasi_image'), $filename);
+        // }
         $klasifikasi->save();
 
-        return redirect('/klasifikasi/get_list_klasifikasi');
+        return redirect('/admin/klasifikasi/list');
     }
 
     public function edit_klasifikasi(Request $request){
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'jumlah_kapasitas' => 'required|string|min:1',
-            'harga' => 'required|string|min:1'
-        ]);
+        // $request->validate([
+        //     'nama' => 'required|string|max:255',
+        //     'jumlah_kapasitas' => 'required|string|min:1',
+        //     'harga' => 'required|string|min:1'
+        // ]);
 
         $klasifikasi = Klasifikasi::where('id', $request->klasifikasi_id)->first();
         $klasifikasi->nama = $request->nama;
         $klasifikasi->jumlah_kapasitas = $request->jumlah_kapasitas;
         $klasifikasi->harga = $request->harga;
 
-        $file = $request->file('gambar');
-        if(file_exists($file)) {
-            $filename = $file->getClientOriginalName();
-            $klasifikasi->gambar_klasifikasi = $filename;
-            $file->move(public_path('uploads\klasifikasi_image'), $filename);
-        }
+        // $file = $request->file('gambar');
+        // if(file_exists($file)) {
+        //     $filename = $file->getClientOriginalName();
+        //     $klasifikasi->gambar_klasifikasi = $filename;
+        //     $file->move(public_path('uploads\klasifikasi_image'), $filename);
+        // }
         $klasifikasi->save();
 
-        return redirect('/klasifikasi/get_list_klasifikasi');
+        return redirect('/admin/klasifikasi/list');
     }
 
     public function delete_klasifikasi($klasifikasi_id) {
         Klasifikasi::where('id', $klasifikasi_id)->delete();
-        return redirect('/klasifikasi/get_list_klasifikasi');
+        return redirect('/admin/klasifikasi/list');
     }
 
     public static function get_list_kamar() {
@@ -105,7 +105,7 @@ class AdminController extends Controller
         }
         $kamar->save();
 
-        return redirect('/kamar/get_list_kamar');
+        return redirect('/admin/kamar/get_list_kamar');
     }
 
     public function edit_kamar(Request $request){
@@ -126,11 +126,11 @@ class AdminController extends Controller
         }
         $kamar->save();
 
-        return redirect('/kamar/get_list_kamar');
+        return redirect('/admin/kamar/get_list_kamar');
     }
 
     public function delete_kamar($kamar_id) {
         Kamar::where('id', $kamar_id)->delete();
-        return redirect('/kamar/get_list_kamar');
+        return redirect('/admin/kamar/get_list_kamar');
     }
 }

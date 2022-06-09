@@ -50,14 +50,14 @@
                 <div class="single-footer-widget instafeed">
                     <h6 class="footer_title">InstaFeed</h6>
                     <ul class="list_style instafeed d-flex flex-wrap">
-                        <li><img src="image/instagram/Image-01.jpg" alt=""></li>
-                        <li><img src="image/instagram/Image-02.jpg" alt=""></li>
-                        <li><img src="image/instagram/Image-03.jpg" alt=""></li>
-                        <li><img src="image/instagram/Image-04.jpg" alt=""></li>
-                        <li><img src="image/instagram/Image-05.jpg" alt=""></li>
-                        <li><img src="image/instagram/Image-06.jpg" alt=""></li>
-                        <li><img src="image/instagram/Image-07.jpg" alt=""></li>
-                        <li><img src="image/instagram/Image-08.jpg" alt=""></li>
+                        <li><img src="{{ asset('image/instagram/Image-01.jpg') }}" alt=""></li>
+                        <li><img src="{{ asset('image/instagram/Image-02.jpg') }}" alt=""></li>
+                        <li><img src="{{ asset('image/instagram/Image-03.jpg') }}" alt=""></li>
+                        <li><img src="{{ asset('image/instagram/Image-04.jpg') }}" alt=""></li>
+                        <li><img src="{{ asset('image/instagram/Image-05.jpg') }}" alt=""></li>
+                        <li><img src="{{ asset('image/instagram/Image-06.jpg') }}" alt=""></li>
+                        <li><img src="{{ asset('image/instagram/Image-07.jpg') }}" alt=""></li>
+                        <li><img src="{{ asset('image/instagram/Image-08.jpg') }}" alt=""></li>
                     </ul>
                 </div>
             </div>
@@ -80,18 +80,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 <!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-<script src="js/jquery.ajaxchimp.min.js"></script>
-<script src="js/mail-script.js"></script>
-<script src="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
-<script src="vendors/nice-select/js/jquery.nice-select.js"></script>
-<script src="js/mail-script.js"></script>
-<script src="js/stellar.js"></script>
-<script src="vendors/lightbox/simpleLightbox.min.js"></script>
-<script src="js/custom.js"></script>
+<!-- jQuery first, then Popper.js') }}, then Bootstrap JS -->
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('js/popper.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('vendors/owl-carousel/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+<script src="{{ asset('js/mail-script.js') }}"></script>
+<script src="{{ asset('vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js') }}"></script>
+<script src="{{ asset('vendors/nice-select/js/jquery.nice-select.js') }}"></script>
+<script src="{{ asset('js/mail-script.js') }}"></script>
+<script src="{{ asset('js/stellar.js') }}"></script>
+<script src="{{ asset('vendors/lightbox/simpleLightbox.min.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 </body>
 </html>
