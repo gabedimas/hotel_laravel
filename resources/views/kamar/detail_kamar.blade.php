@@ -54,9 +54,10 @@
                                                 <span> Room Classification : </span>
                                                 <div class="input-group">
                                                 <select class="wide" name="klasifikasi_id" disabled>
-                                                    <option value="" disabled>-- Select Classification --</option>
                                                     @foreach($list_klasifikasi as $klasifikasi)
-                                                        <option value="{{ $klasifikasi['id'] == $booking->klasifikasi_id ? 'selected' : '' }}">{{ $klasifikasi['nama'] }}</option>
+                                                        @if($klasifikasi['id'] == $booking->klasifikasi_id )
+                                                            <option value="{{ $klasifikasi['id'] }} selected">{{ $klasifikasi['nama'] }}</option>
+                                                        @endif
                                                     @endforeach
                                                 </select>
                                                 </div>
