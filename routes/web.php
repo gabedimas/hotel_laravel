@@ -43,6 +43,11 @@ Route::get('/contact', [ContactController::class, 'get_menu']);
 // CONTACT ROUTING
 Route::get('/gallery', [GalleryController::class, 'get_menu']);
 
+// BOOKING ROUTING
+Route::get('/booking/list', [BookingController::class, 'get_list_kamar']);
+Route::get('/booking/detail/{kamar_id}', [BookingController::class, 'get_detail_kamar']);
+Route::get('/booking/submit', [BookingController::class, 'booking_kamar']);
+
 
 // MANAGEMENT ROUTING
 Route::get('/management/list', [ManagementController::class, 'get_list_approval'])->middleware('can:isManager');

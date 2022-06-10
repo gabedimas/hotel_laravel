@@ -20,7 +20,14 @@
                                   </div>
                                   <div class="form-group col-lg-6 col-md-6 name">
                                       Room Classification :
-                                    <input type="text" class="form-control" id="klasifikasi_id" name="klasifikasi_id" value="{{ $kamar['klasifikasi_id'] }}">
+                                      <div class="input-group">
+                                        <select class="wide" name="klasifikasi_id">
+                                            <option value="" selected disabled>-- Select Classification --</option>
+                                            @foreach($list_klasifikasi as $klasifikasi)
+                                               <option value="{{ $klasifikasi['id'] }}" {{ $klasifikasi['id'] == $kamar['klasifikasi_id'] ? "selected" : "" }}>{{ $klasifikasi['nama'] }}</option>
+                                            @endforeach
+                                        </select>
+                                      </div>
                                   </div>
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Submit">

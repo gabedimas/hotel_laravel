@@ -80,12 +80,14 @@ class AdminController extends Controller
     }
 
     public static function get_detail_kamar($kamar_id) {
+        $list_klasifikasi = Klasifikasi::all();
         $detail_kamar = Kamar::where('id', $kamar_id)->get();
-        return(view('kamar.edit_kamar', ['detail_kamar' => $detail_kamar]));
+        return(view('kamar.edit_kamar', ['list_klasifikasi' => $list_klasifikasi, 'detail_kamar' => $detail_kamar]));
     }
 
     public static function get_add_kamar_menu() {
-        return(view('kamar.add_kamar'));
+        $list_klasifikasi = Klasifikasi::all();
+        return(view('kamar.add_kamar', ['list_klasifikasi' => $list_klasifikasi]));
     }
 
     public function add_kamar(Request $request) {

@@ -11,13 +11,22 @@
                             <form action="/admin/kamar/submit" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group form-inline">
-                                  <div class="form-group col-lg-6 col-md-6 name">
+                                  <div class="form-group col-lg-12 col-md-12 name">
                                       Name :
                                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Suite Room">
                                   </div>
-                                  <div class="form-group col-lg-6 col-md-6 name">
-                                      Room Classification :
-                                    <input type="text" class="form-control" id="klasifikasi_id" name="klasifikasi_id" placeholder="49">
+                                  <br>
+                                  <br>
+                                  <div class="form-group col-lg-12 col-md-12 name">
+                                    <span> Room Classification : </span>
+                                    <div class="input-group">
+                                      <select class="wide" name="klasifikasi_id">
+                                          <option value="" selected disabled>-- Select Classification --</option>
+                                          @foreach($list_klasifikasi as $klasifikasi)
+                                             <option value="{{ $klasifikasi['id'] }}">{{ $klasifikasi['nama'] }}</option>
+                                          @endforeach
+                                      </select>
+                                    </div>
                                   </div>
                                 </div>
                                 <input type="submit" class="btn btn-primary" value="Submit">
