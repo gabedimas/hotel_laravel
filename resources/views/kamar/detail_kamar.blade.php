@@ -37,35 +37,52 @@
                             @if(isset($detail_booking))
                                 @foreach($detail_booking as $booking)
                                 <div class="comment-form">
-                                    <a href="{{ url('/booking/list') }}" class="primary-btn button_hover">< Back</a>
+                                    <a href="{{ url('/accomodation') }}" class="primary-btn button_hover">< Back</a>
                                     <h4>Book Room</h4>
                                     <form action="/booking/submit" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group form-inline">
-                                        <div class="form-group col-lg-12 col-md-12 name">
-                                            Name :
-                                            <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
-                                            <input type="hidden" class="form-control" id="kamar_id" name="kamar_id" value="{{ $booking['kamar_id'] }}">
-                                            <input type="text" class="form-control" id="nama_kamar" name="nama_kamar" value="{{ $booking['nama_kamar'] }}">
-                                        </div>
-                                        <br>
-                                        <br>
-                                        <div class="form-group col-lg-12 col-md-12 name">
-                                            <span> Room Classification : </span>
-                                            <div class="input-group">
-                                            <select class="wide" name="klasifikasi_id" readonly>
-                                                <option value="" disabled>-- Select Classification --</option>
-                                                @foreach($list_klasifikasi as $klasifikasi)
-                                                    <option value="{{ $klasifikasi['id'] == $booking['klasifikasi_id'] ? 'selected' : '' }}">{{ $klasifikasi['nama'] }}</option>
-                                                @endforeach
-                                            </select>
+                                            <div class="form-group col-lg-12 col-md-12 name">
+                                                Name :
+                                                <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                                                <input type="hidden" class="form-control" id="kamar_id" name="kamar_id" value="{{ $booking->id }}">
+                                                <input type="text" class="form-control" id="nama_kamar" name="nama_kamar" value="{{ $booking->nama }}" readonly>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="form-group col-lg-12 col-md-12 name">
+                                                <span> Room Classification : </span>
+                                                <div class="input-group">
+                                                <select class="wide" name="klasifikasi_id" disabled>
+                                                    <option value="" disabled>-- Select Classification --</option>
+                                                    @foreach($list_klasifikasi as $klasifikasi)
+                                                        <option value="{{ $klasifikasi['id'] == $booking->klasifikasi_id ? 'selected' : '' }}">{{ $klasifikasi['nama'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-12 col-md-12 name">
+                                                <div class='input-group date' id='datetimepicker11'>
+                                                    <input type='text' class="form-control" placeholder="Arrival Date" name="tanggal_awal"/>
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-12 col-md-12 name">
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <input type='text' class="form-control" placeholder="Departure Date" name="tanggal_akhir"/>
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                        </div>
-                                        <input type="submit" class="btn btn-primary" value="Submit">
+                                        <input type="submit" class="btn btn-primary" value="Book this room">
                                     </form>
                                 </div>
-                            @endforeach
+                                @endforeach
+                            @endif
                         @endif
                     </div>
                 </div>

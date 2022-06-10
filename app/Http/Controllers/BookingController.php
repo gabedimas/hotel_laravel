@@ -5,7 +5,6 @@ use App\Models\Kamar;
 use App\Models\Klasifikasi;
 use App\Models\Booking;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\List_;
 
 class BookingController extends Controller
 {
@@ -18,23 +17,35 @@ class BookingController extends Controller
 
         $list_kamar_tersedia = [];
         foreach($list_kamar_by_klasifikasi_id as $kamar){
-            $list_kamar_tersedia[] = $kamar['id'];
+            $cek_booking_kamar = Booking::where('kamar_id', $kamar['id'])
+            ->where('status', 'APPROVED')
+            ->first();
+
+            if($cek_booking_kamar != null){
+                if($request->tanggal_awal <= date('Y-m-d', strtotime($cek_booking_kamar->tanggal_awal)) &&
+                    $request->tanggal_akhir <= date('Y-m-d', strtotime($cek_booking_kamar->tanggal_awal))
+                    ) {
+                        $list_kamar_tersedia[] = $kamar['id'];
+                } elseif(
+                    $request->tanggal_awal >= date('Y-m-d', strtotime($cek_booking_kamar->tanggal_akhir)) &&
+                    $request->tanggal_akhir >= date('Y-m-d', strtotime($cek_booking_kamar->tanggal_akhir))
+                ) {
+                    $list_kamar_tersedia[] = $kamar['id'];
+                }
+            } else {
+                $list_kamar_tersedia[] = $kamar['id'];
+            }
+
         }
 
-        $list_kamar = Booking::whereDate('tanggal_awal', '<=' , date('Y-m-d', strtotime($request->tanggal_awal)))
-            ->whereDate('tanggal_akhir', '<=' ,date('Y-m-d', strtotime($request->tanggal_awal)))
-            ->whereDate('tanggal_awal', '>=' , date('Y-m-d', strtotime($request->tanggal_akhir)))
-            ->whereDate('tanggal_akhir', '>=' , date('Y-m-d', strtotime($request->tanggal_akhir)))
-            ->whereIn('kamar_id', $list_kamar_tersedia)
-            ->get();
-
-        return $list_kamar_tersedia;
-        return(view('kamar.list_component', ['list_kamar' => $list_kamar]));
+        $available_rooms = Kamar::whereIn('id', $list_kamar_tersedia)->get();
+        return(view('kamar.list_component', ['list_kamar' => $available_rooms]));
     }
 
     public static function get_detail_kamar($kamar_id) {
-        $detail_kamar = Kamar::where('id', $kamar_id)->first();
-        return(view('kamar.detail_kamar', ['detail_kamar' => $detail_kamar]));
+        $list_klasifikasi = Klasifikasi::all();
+        $detail_kamar = Kamar::where('id', $kamar_id)->get();
+        return(view('kamar.detail_kamar', ['detail_booking' => $detail_kamar, 'list_klasifikasi' => $list_klasifikasi]));
     }
 
     public function booking_kamar(Request $request) {
@@ -53,7 +64,7 @@ class BookingController extends Controller
         $booking->tanggal_akhir = $request->tanggal_akhir;
         $booking->save();
 
-        return redirect('/accomodation');
+        return(view('kamar.success'));
     }
 
 }

@@ -46,7 +46,7 @@ Route::get('/gallery', [GalleryController::class, 'get_menu']);
 // BOOKING ROUTING
 Route::get('/booking/list', [BookingController::class, 'get_list_kamar']);
 Route::get('/booking/detail/{kamar_id}', [BookingController::class, 'get_detail_kamar']);
-Route::get('/booking/submit', [BookingController::class, 'booking_kamar']);
+Route::post('/booking/submit', [BookingController::class, 'booking_kamar']);
 
 
 // MANAGEMENT ROUTING
